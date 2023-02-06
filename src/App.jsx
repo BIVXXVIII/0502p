@@ -33,8 +33,10 @@ const App = () => {
             let temparray = [...content]
 
             // витягання потрібної інформації (заголовок, автор, опис, адресса зображення), перекидання їх всі в об'єкт і закидаємо їх в тимчасовий масив
+
+            console.log(data)
             data.map(article => (
-                temparray.push({ title: article.title, author: article.author, desc: article.description, img: article.urlToImage })
+                temparray.push({ title: article.title, author: article.author, desc: article.description, img: article.urlToImage, article: article.content })
             ))
             // Перенесення значень з тимчасового масиву, в постійну змінну яка буде провокувати ререндеринг компоненту
             setContent(temparray)
@@ -58,6 +60,7 @@ const App = () => {
             body={article.desc}
             author={article.author}
             imgURL={article.img}
+            article = {article.article}
         ></Card>))}</div>)
     } else if (error) {
         // прокидання помилки, поки не зтикався, тож тільки здогадуюсь як воно має працювати.

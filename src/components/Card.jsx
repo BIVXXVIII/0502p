@@ -38,19 +38,23 @@ const Card = (props) => {
             </div>
         );
     } else {
-        return (<div className='card'>
-            <hgroup>
-                <h3 className='card_title'>{props.title}</h3>
-                <p>author: {author}</p>
-            </hgroup>
-            {imgTag}
-            <article>{props.body} more more more more</article>
-            <span style={{
-                fontWeight: '600',
-                cursor: 'pointer'
-            }}
-                onClick={showNews}>read more...</span>
-        </div>)
+        return (
+            <div className='card_wrapper'>
+                <div className='card_active'>
+                    <hgroup>
+                        <h3 className='card_title'>{props.title}</h3>
+                        <p>author: {author}</p>
+                    </hgroup>
+                    {imgTag}
+                    <article>{props.article}</article>
+                    <span style={{
+                        fontWeight: '600',
+                        cursor: 'pointer'
+                    }}
+                        onClick={showNews}>hide...</span>
+                </div>
+            </div>
+            )
     }
     }
 
