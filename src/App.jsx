@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Card from './components/Card';
+import './style/main.css'
 
 const App = () => {
     const [loaded, isLoaded] = useState(false)
@@ -13,9 +14,10 @@ const App = () => {
         fetch(url).then(res => res.json()).then((result) => {
             isLoaded(!loaded)
             let data = result.articles
+            console.log(data)
             let temparray = [...content]
             data.map(article => (
-                temparray.push({title: article.title, author: article.author, desc: article.description})
+                temparray.push({ title: article.title, author: article.author, desc: article.description, img: article.urlToImage })
             ))
             setContent(temparray)
         })
@@ -25,13 +27,16 @@ const App = () => {
     
 
     if (loaded) {
-        return (<>{content.map(article => (<Card title={article.title}
-        body={article.desc} author={article.author}
-        ></Card>))}</>)
+        return (<div className='App'>{content.map(article => (<Card
+            title={article.title}
+            body={article.desc}
+            author={article.author}
+            imgURL={article.img}
+        ></Card>))}</div>)
     } else if (error) {
         return (<>{error}</>)
     } else {
-        return (<>is not loaded</>)
+        return (<><div className="lds-heart"><div></div></div></>)
     }
 }
 
